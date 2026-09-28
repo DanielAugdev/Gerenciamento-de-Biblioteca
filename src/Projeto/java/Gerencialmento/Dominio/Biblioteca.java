@@ -29,21 +29,37 @@ public class Biblioteca {
                     scanner.nextLine();
                     System.out.println("Digite o nome do livro: ");
                     String nomeLivro = scanner.nextLine();
+                    while (nomeLivro.isEmpty()){
+                        System.out.println("INFORME O NOME DO LIVRO!");
+                        nomeLivro = scanner.nextLine();
+                    }
                     livros[posicao].nomeLivro = nomeLivro.trim();
                     System.out.println("Livro cadastrado: " + nomeLivro);
 
                     System.out.println("\nDigite o nome do Autor: ");
                     String nomeAutor = scanner.nextLine();
+                    while (nomeAutor.isEmpty()){
+                        System.out.println("INFORME O NOME DO AUTOR!");
+                        nomeAutor = scanner.nextLine();
+                    }
                     livros[posicao].nomeAutor = nomeAutor.trim();
                     System.out.println("Autor cadastrado: " + nomeAutor);
 
                     System.out.println("\nDigite o código do livro: ");
                     String codigoLivro = scanner.nextLine();
+                    while (codigoLivro.isEmpty()){
+                        System.out.println("INFORME O CÓDIGO!");
+                        codigoLivro = scanner.nextLine();
+                    }
                     livros[posicao].codigoLivro = codigoLivro;
                     System.out.println("Código cadastrado: " + codigoLivro);
 
                     System.out.println("\nDigite o gênero do livro: ");
                     String generoLivro = scanner.nextLine();
+                    while (generoLivro.isEmpty()){
+                        System.out.println("INFORME O GÊNERO!");
+                        generoLivro = scanner.nextLine();
+                    }
                     livros[posicao].generoLivro = generoLivro;
                     System.out.println("Gênero cadastrado: " + generoLivro);
 
