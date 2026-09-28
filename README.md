@@ -134,7 +134,8 @@ O projeto continuará sendo desenvolvido conforme avanço nos estudos de Java.
 
 Algumas funcionalidades planejadas:
 
-* [ ] Melhorar o sistema de busca
+* [✔️] Melhorar o sistema de cadastro 
+* [ ] Melhorar o sistema de busca 
 * [ ] Permitir busca por nome ou código
 * [ ] Implementar controle de quantidade de livros
 * [ ] Adicionar sistema de empréstimo e devolução
