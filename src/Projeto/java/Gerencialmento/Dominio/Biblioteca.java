@@ -27,21 +27,21 @@ public class Biblioteca {
                     livros[posicao] = new Livro();
 
                     scanner.nextLine();
-                    String nomeLivro = lerTextoObrigatorio(scanner, "Digite o nome do livro:", "INFORME O NOME DO LIVRO!");
-                    livros[posicao].nomeLivro = nomeLivro.trim();
-                    System.out.println("Livro cadastrado: " + nomeLivro);
+                    String nomeLivro = lerTextoObrigatorio(scanner, "Digite o nome do livro:", "INFORME O NOME DO LIVRO!" );
+                    livros[posicao].nomeLivro = nomeLivro;
+                    System.out.println("Livro cadastrado: ["+ livros[posicao].nomeLivro +"]" );
 
                     String nomeAutor = lerTextoObrigatorio(scanner, "\nDigite o nome do Autor: ", "INFORME O NOME DO AUTOR!");
-                    livros[posicao].nomeAutor = nomeAutor.trim();
-                    System.out.println("Autor cadastrado: " + nomeAutor);
+                    livros[posicao].nomeAutor = nomeAutor;
+                    System.out.println("Autor cadastrado: [" +  livros[posicao].nomeAutor + "]");
 
                     String codigoLivro = lerTextoObrigatorio(scanner, "\nDigite o código do livro: ", "INFORME O CÓDIGO!");
                     livros[posicao].codigoLivro = codigoLivro;
-                    System.out.println("Código cadastrado: " + codigoLivro);
+                    System.out.println("Código cadastrado: [" + livros[posicao].codigoLivro + "]");
 
                     String generoLivro = lerTextoObrigatorio(scanner, "\nDigite o gênero do livro: ", "INFORME O GÊNERO!");
                     livros[posicao].generoLivro = generoLivro;
-                    System.out.println("Gênero cadastrado: " + generoLivro);
+                    System.out.println("Gênero cadastrado: [" + livros[posicao].generoLivro + "]");
 
                     System.out.println("Cadastro de livro ");
 
@@ -70,7 +70,7 @@ public class Biblioteca {
                 if (opcaoBusca == 1) {
                     System.out.println("Digite o Código: ");
                     scanner.nextLine();
-                    String codigoBusca = scanner.nextLine();
+                    String codigoBusca = scanner.nextLine().trim();
                     boolean encontrou = false;
 
 
@@ -83,13 +83,14 @@ public class Biblioteca {
                         }
                     }
 
+
                     if (!encontrou) {
                         System.out.println(" ------ LIVRO NÃO ENCONTRADO ------ ");
                     }
                 } else if (opcaoBusca == 2) {
                     System.out.println("Digite o nome: ");
                     scanner.nextLine();
-                    String nomeBusca = scanner.nextLine();
+                    String nomeBusca = scanner.nextLine().trim();
                     boolean encontrou = false;
 
                     for (int i = 0; i < posicao; i++) {
@@ -118,19 +119,19 @@ public class Biblioteca {
     }
     static void exibirLivro(Livro livro){
 
-        System.out.println("\nNome do livro: " + livro.nomeLivro);
-        System.out.println("Autor do livro: " + livro.nomeAutor);
-        System.out.println("Código do livro: " + livro.codigoLivro);
-        System.out.println("Gênero do livro: " + livro.generoLivro);
+        System.out.println("\nNome do livro: [" + livro.nomeLivro + "]");
+        System.out.println("Autor do livro: [" + livro.nomeAutor + "]");
+        System.out.println("Código do livro: [" + livro.codigoLivro + "]");
+        System.out.println("Gênero do livro: [" + livro.generoLivro + "]");
     }
 
     static String lerTextoObrigatorio(Scanner scanner, String pedido, String erro ){
         System.out.println(pedido);
         String texto = scanner.nextLine();
-        while (texto.isEmpty()){
+        while (texto.trim().isEmpty()){
             System.out.println(erro);
             texto = scanner.nextLine();
         }
-        return texto;
+        return texto.trim();
     }
 }
