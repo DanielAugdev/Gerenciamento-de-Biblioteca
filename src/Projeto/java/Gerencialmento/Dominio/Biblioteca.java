@@ -68,43 +68,11 @@ public class Biblioteca {
                 int opcaoBusca = scanner.nextInt();
 
                 if (opcaoBusca == 1) {
-                    System.out.println("Digite o Código: ");
-                    scanner.nextLine();
-                    String codigoBusca = scanner.nextLine().trim();
-                    boolean encontrou = false;
+                    buscarLivro(scanner, livros,"Digite o Código: ", posicao, opcaoBusca);
 
-
-                    for (int i = 0; i < posicao; i++) {
-                        if (codigoBusca.equals(livros[i].codigoLivro)) {
-                            encontrou = true;
-                            System.out.println(" ------ LIVRO ENCONTRADO ------ ");
-                            exibirLivro(livros[i]);
-                            break;
-                        }
-                    }
-
-
-                    if (!encontrou) {
-                        System.out.println(" ------ LIVRO NÃO ENCONTRADO ------ ");
-                    }
                 } else if (opcaoBusca == 2) {
-                    System.out.println("Digite o nome: ");
-                    scanner.nextLine();
-                    String nomeBusca = scanner.nextLine().trim();
-                    boolean encontrou = false;
+                    buscarLivro(scanner, livros,"Digite o nome: ", posicao, opcaoBusca );
 
-                    for (int i = 0; i < posicao; i++) {
-                        if (nomeBusca.equals(livros[i].nomeLivro)) {
-                            encontrou = true;
-                            System.out.println(" ------ LIVRO ENCONTRADO ------ ");
-                            exibirLivro(livros[i]);
-                            break;
-                        }
-
-                    }
-                    if (!encontrou) {
-                        System.out.println(" ------ LIVRO NÃO ENCONTRADO ------ ");
-                    }
                 } else {
                     System.out.println("OPÇÃO INVÁLIDA! SELECIONE 1 OU 2.");
                 }
@@ -133,5 +101,33 @@ public class Biblioteca {
             texto = scanner.nextLine();
         }
         return texto.trim();
+    }
+
+    static void buscarLivro(Scanner scanner, Livro[] livros, String pedido, int posicao, int opcaoBusca ){
+        System.out.println(pedido);
+        scanner.nextLine();
+        String termoBusca = scanner.nextLine().trim();
+        boolean encontrou = false;
+        for (int i = 0; i < posicao; i++) {
+            String valorComparado;
+
+            if (opcaoBusca == 1){
+                valorComparado = livros[i].codigoLivro;
+
+            }else {
+                valorComparado = livros[i].nomeLivro;
+            }
+            if (termoBusca.equals(valorComparado)){
+                encontrou = true;
+                System.out.println(" ------ LIVRO ENCONTRADO ------ ");
+                exibirLivro(livros[i]);
+                break;
+
+            }
+        }
+        if (!encontrou) {
+            System.out.println(" ------ LIVRO NÃO ENCONTRADO ------ ");
+        }
+
     }
 }
