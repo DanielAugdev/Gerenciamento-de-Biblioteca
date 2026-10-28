@@ -39,8 +39,24 @@ public class Biblioteca {
                     livros[posicao].codigoLivro = codigoLivro;
                     System.out.println("Código cadastrado: [" + livros[posicao].codigoLivro + "]");
 
-                    String generoLivro = lerTextoObrigatorio(scanner, "\nDigite o gênero do livro: ", "INFORME O GÊNERO!");
-                    livros[posicao].generoLivro = generoLivro;
+
+                System.out.println("\nEscolha o gênero: ");
+                    int escolhaGenero = 0;
+
+                    for (int i = 0; i < GeneroLivro.values().length; i++) {
+                        System.out.println((i + 1) + " - "  + GeneroLivro.values()[i]);
+                    }
+                    while (escolhaGenero < 1 || escolhaGenero >  GeneroLivro.values().length) {
+
+
+                        while (!scanner.hasNextInt()) {
+                            System.out.println("\nOPÇÃO INVÁLIDA!");
+                            scanner.nextLine();
+                        }
+                        escolhaGenero = scanner.nextInt();
+
+                    }
+                    livros[posicao].generoLivro = GeneroLivro.values()[escolhaGenero - 1];
                     System.out.println("Gênero cadastrado: [" + livros[posicao].generoLivro + "]");
 
                     System.out.println("Cadastro de livro ");
@@ -130,4 +146,5 @@ public class Biblioteca {
         }
 
     }
+
 }
