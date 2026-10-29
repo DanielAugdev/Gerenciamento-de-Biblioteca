@@ -14,7 +14,7 @@ public class Biblioteca {
             System.out.println("2 - Listagem Livro ");
             System.out.println("3 - Busca Livro ");
             System.out.println("4 - sair ");
-            System.out.println("Digite uma opção: ");
+            System.out.print("Digite uma opção: ");
 
             while (!scanner.hasNextInt()) {
                 System.out.println("OPÇÃO INVÁLIDA!");
@@ -27,7 +27,7 @@ public class Biblioteca {
                     livros[posicao] = new Livro();
 
                     scanner.nextLine();
-                    String nomeLivro = lerTextoObrigatorio(scanner, "Digite o nome do livro:", "INFORME O NOME DO LIVRO!" );
+                    String nomeLivro = lerTextoObrigatorio(scanner, "\nDigite o nome do livro: ", "INFORME O NOME DO LIVRO!" );
                     livros[posicao].nomeLivro = nomeLivro;
                     System.out.println("Livro cadastrado: ["+ livros[posicao].nomeLivro +"]" );
 
@@ -40,26 +40,10 @@ public class Biblioteca {
                     System.out.println("Código cadastrado: [" + livros[posicao].codigoLivro + "]");
 
 
-                System.out.println("\nEscolha o gênero: ");
-                    int escolhaGenero = 0;
+                    livros[posicao].generoLivro = escolherGenero(scanner);
+                    System.out.println("\nGênero cadastrado: [" + livros[posicao].generoLivro + "]");
 
-                    for (int i = 0; i < GeneroLivro.values().length; i++) {
-                        System.out.println((i + 1) + " - "  + GeneroLivro.values()[i]);
-                    }
-                    while (escolhaGenero < 1 || escolhaGenero >  GeneroLivro.values().length) {
-
-
-                        while (!scanner.hasNextInt()) {
-                            System.out.println("\nOPÇÃO INVÁLIDA!");
-                            scanner.nextLine();
-                        }
-                        escolhaGenero = scanner.nextInt();
-
-                    }
-                    livros[posicao].generoLivro = GeneroLivro.values()[escolhaGenero - 1];
-                    System.out.println("Gênero cadastrado: [" + livros[posicao].generoLivro + "]");
-
-                    System.out.println("Cadastro de livro ");
+                    System.out.println("\nCadastro de livro realizado! ");
 
                     posicao++;
 
@@ -73,9 +57,10 @@ public class Biblioteca {
                 }
 
             } else if (opcao == 3) {
-                System.out.println("1 - Buscar por código:  ");
-                System.out.println("2 - Digite por nome:  ");
+                System.out.println("\n1 - Buscar por código  ");
+                System.out.println("2 - Buscar por nome  ");
                 scanner.nextLine();
+                System.out.print("\nEscolha uma opção: ");
 
                 while (!scanner.hasNextInt()) {
                     System.out.println("OPÇÃO INVÁLIDA! DIGITE APENAS 1 ou 2 ");
@@ -110,7 +95,7 @@ public class Biblioteca {
     }
 
     static String lerTextoObrigatorio(Scanner scanner, String pedido, String erro ){
-        System.out.println(pedido);
+        System.out.print(pedido);
         String texto = scanner.nextLine();
         while (texto.trim().isEmpty()){
             System.out.println(erro);
@@ -120,7 +105,7 @@ public class Biblioteca {
     }
 
     static void buscarLivro(Scanner scanner, Livro[] livros, String pedido, int posicao, int opcaoBusca ){
-        System.out.println(pedido);
+        System.out.print(pedido);
         scanner.nextLine();
         String termoBusca = scanner.nextLine().trim();
         boolean encontrou = false;
@@ -135,16 +120,43 @@ public class Biblioteca {
             }
             if (termoBusca.equals(valorComparado)){
                 encontrou = true;
-                System.out.println(" ------ LIVRO ENCONTRADO ------ ");
+                System.out.println("\n ------ LIVRO ENCONTRADO ------ ");
                 exibirLivro(livros[i]);
                 break;
 
             }
         }
         if (!encontrou) {
-            System.out.println(" ------ LIVRO NÃO ENCONTRADO ------ ");
+            System.out.println("\n ------ LIVRO NÃO ENCONTRADO ------ ");
         }
 
+    }
+
+    static GeneroLivro escolherGenero(Scanner scanner){
+        System.out.println("\nEscolha o gênero: ");
+        int escolhaGenero = 0;
+        for (int i = 0; i < GeneroLivro.values().length; i++) {
+            System.out.println((i + 1) + " - "  + GeneroLivro.values()[i]);
+        }
+        System.out.print("Digite a opção desejada: ");
+
+        while (escolhaGenero < 1 || escolhaGenero >  GeneroLivro.values().length) {
+
+            while (!scanner.hasNextInt()) {
+                System.out.println("\nOPÇÃO INVÁLIDA!");
+                scanner.nextLine();
+                System.out.print("Escolha uma opção válida: ");
+            }
+            escolhaGenero = scanner.nextInt();
+            scanner.nextLine();
+
+            if (escolhaGenero < 1 || escolhaGenero >  GeneroLivro.values().length){
+                System.out.println("\nOPÇÃO INVÁLIDA!");
+                System.out.print("Escolha uma opção válida: ");
+            }
+
+        }
+          return GeneroLivro.values()[escolhaGenero - 1];
     }
 
 }
